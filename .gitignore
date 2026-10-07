@@ -1,7 +1,9 @@
+
+#Ignore environment variables - containing passwords, tokens and/or other secrets
 .env
 
-
+#Ignore Nginx proxy logs
 nginx/logs/*
 
-
-checkmk/monitoring/*
+#Ignore checkmk sites backup data
+checkmk/backups/*

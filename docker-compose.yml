@@ -6,7 +6,7 @@ networks:
 
 services:
   checkmk_app:
-    image: checkmk/check-mk-community:${CHECKMK_VERSION}
+    image: checkmk/check-mk-community:${CMK_VERSION}
     container_name: checkmk_app
     restart: unless-stopped
     environment:
@@ -15,14 +15,16 @@ services:
       - CMK_SITE_ID=${CMK_SITE_ID}
       - MAIL_RELAY_HOST=${MAIL_RELAY_HOST}
     #ports:
-      #- 8080:5000 #Webserver
-      #- 8000:8000 #AgentReceiver
+    #  - 8080:5000 #Webserver
+    #  - 8000:8000 #AgentReceiver
     volumes:
-      - ./checkmk/monitoring:/omd/sites
+      - monitoring:/omd/sites
+      - ./checkmk/backups:/backups
     tmpfs:
-      - /opt/omd/sites/cmk/tmp:uid=1000,gid=1000
+      - /opt/omd/sites/${CMK_SITE_ID}/tmp:uid=1000,gid=1000
     networks:
       - backend
+
 
   checkmk_proxy:
     image: nginx:${PROXY_VERSION_TAG:-alpine}
@@ -38,3 +40,9 @@ services:
       - checkmk_app
     networks:
       - backend
+
+
+# Necessario creare un named volume -> bind mount non disponibile a causa di presenza di file socket trattati diversamente tra Linux e Windows
+volumes:
+  monitoring:
+    name: ${SITES_VOLUME_NAME}

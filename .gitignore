@@ -7,3 +7,6 @@ nginx/logs/*
 
 #Ignore checkmk sites backup data
 checkmk/backups/*
+
+#Ignore site data
+checkmk/monitoring/*

@@ -11,3 +11,6 @@ checkmk/backups/*
 
 #Ignore site data
 checkmk/monitoring/*
+
+#Ignore nginx configuration file
+nginx/conf.d/checkmk.conf

@@ -48,7 +48,7 @@ services:
       - TZ=Europe/Berlin
       - CMK_SITE_ID=${CMK_SITE_ID_2}
       - MAIL_RELAY_HOST=${MAIL_RELAY_HOST}
-      - CMK_LIVESTATUS_TCP=on
+      - CMK_LIVESTATUS_TCP=${LIVESTATUS_TCP_SWITCH}
     volumes:
       - volume_site_2:/omd/sites
       - ./checkmk/backups:/backups
@@ -67,7 +67,7 @@ services:
       - TZ=Europe/Berlin
       - CMK_SITE_ID=${CMK_SITE_ID_3}
       - MAIL_RELAY_HOST=${MAIL_RELAY_HOST}
-      - CMK_LIVESTATUS_TCP=on
+      - CMK_LIVESTATUS_TCP=${LIVESTATUS_TCP_SWITCH}
     volumes:
       - volume_site_3:/omd/sites
       - ./checkmk/backups:/backups
